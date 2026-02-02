@@ -130,9 +130,10 @@ final class GameViewModel: ObservableObject {
 
 
     private func finishGame() {
-        finished = true
-        addLog("Путь завершён")
-    }
+    finished = true
+    addLog(random(Atmosphere.finish))
+}
+    
 
     private func addLog(_ text: String) {
         logs.append(LogEntry(text: text))
