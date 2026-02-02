@@ -68,6 +68,16 @@ enum DayStage: Int, CaseIterable {
     }
 }
 
+enum DayMood: Int {
+    case hope = 1
+    case curiosity
+    case doubt
+    case effort
+    case fatigue
+    case reflection
+    case acceptance
+}
+
 // MARK: - Лог
 struct LogEntry: Identifiable {
     let id = UUID()
@@ -82,6 +92,10 @@ final class GameViewModel: ObservableObject {
     @Published var logs: [LogEntry] = []
     @Published var started = false
     @Published var finished = false
+
+    private func moodForDay(_ day: Int) -> DayMood {
+        DayMood(rawValue: day) ?? .acceptance
+    }
     
     private func random(_ texts: [String]) -> String {
         texts.randomElement() ?? ""
