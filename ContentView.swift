@@ -124,21 +124,15 @@ final class GameViewModel: ObservableObject {
     if let nextStage = DayStage(rawValue: stage.rawValue + 1) {
         stage = nextStage
 
-        switch stage {
-        case .sunrise:
-            addLog(random(Atmosphere.sunrise))
-        case .noon:
-            addLog(random(Atmosphere.noon))
-        case .evening:
-            addLog(random(Atmosphere.evening))
-        case .sunset:
-            addLog(random(Atmosphere.sunset))
-        }
+        let mood = moodForDay(day)
+        let texts = AtmosphereTexts.texts[mood]?[stage] ?? []
+        addLog(random(texts))
 
     } else {
         nextDay()
     }
 }
+
 
 
     private func nextDay() {
