@@ -1,50 +1,52 @@
-/* Start screen */
+/* Titles and buttons */
+"game_title" = "THE PATH";
 "start_path" = "Begin the path";
-
-/* Continue button */
 "continue_path" = "Continue";
-
-/* Finish screen */
 "path_finished" = "The path is complete";
-
-/* Restart button */
 "restart" = "Start again";
-
-/* Day label */
 "day" = "Day";
 
-/* Logs (atmospheric texts) */
+/* Logs — atmospheric texts */
+
+/* Day 1 */
 "log_day1_sunrise" = "Everything feels possible.";
 "log_day1_noon" = "You move forward easily.";
 "log_day1_evening" = "The day was kind.";
 "log_day1_sunset" = "You have no doubts.";
 
+/* Day 2 */
 "log_day2_sunrise" = "Morning opens new questions.";
 "log_day2_noon" = "You seek answers on your path.";
 "log_day2_evening" = "Everything feels interesting.";
 "log_day2_sunset" = "New experience gained.";
 
+/* Day 3 */
 "log_day3_sunrise" = "Thoughts come before the light.";
 "log_day3_noon" = "You begin to ask questions.";
 "log_day3_evening" = "Not all answers are found.";
 "log_day3_sunset" = "Doubt remains.";
 
+/* Day 4 */
 "log_day4_sunrise" = "You gather strength for the path.";
 "log_day4_noon" = "Challenges do not scare you.";
 "log_day4_evening" = "You keep moving forward.";
 "log_day4_sunset" = "Day is over, but the path continues.";
 
+/* Day 5 */
 "log_day5_sunrise" = "Morning feels heavy, but you move.";
 "log_day5_noon" = "Legs are tired, thoughts are clearer.";
 "log_day5_evening" = "You learn to accept fatigue.";
 "log_day5_sunset" = "Rest is near, the path will continue.";
 
+/* Day 6 */
 "log_day6_sunrise" = "You look back at what you've done.";
 "log_day6_noon" = "Thoughts are deep, heart is calm.";
 "log_day6_evening" = "You find meaning in every step.";
 "log_day6_sunset" = "Final is near, time to evaluate the path.";
 
+/* Day 7 */
 "log_day7_sunrise" = "You accept the morning as it is.";
 "log_day7_noon" = "Nothing needs to be changed.";
 "log_day7_evening" = "You do not resist fatigue.";
 "log_day7_sunset" = "The path was just as it should be.";
+
