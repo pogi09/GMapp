@@ -82,6 +82,10 @@ final class GameViewModel: ObservableObject {
     @Published var logs: [LogEntry] = []
     @Published var started = false
     @Published var finished = false
+    
+    private func random(_ texts: [String]) -> String {
+        texts.randomElement() ?? ""
+    }
 
     func startGame() {
         started = true
