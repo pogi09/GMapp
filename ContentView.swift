@@ -93,8 +93,9 @@ final class GameViewModel: ObservableObject {
         day = 1
         stage = .sunrise
         logs = []
-        addLog("Путь начат")
+        addLog(random(Atmosphere.start))
     }
+
 
     func nextStep() {
         if let nextStage = DayStage(rawValue: stage.rawValue + 1) {
