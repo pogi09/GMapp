@@ -1,25 +1,21 @@
 // ВСЯ логика игры
-
 import SwiftUI
 
+/// ViewModel игры "Путь" с локализованными текстами
 final class GameViewModel: ObservableObject {
 
+    // MARK: - Состояние игры
     @Published var day = 1
     @Published var stage: DayStage = .sunrise
     @Published var logs: [LogEntry] = []
     @Published var started = false
     @Published var finished = false
-    
+
     // MARK: - Определение настроения дня
     private func moodForDay(_ day: Int) -> DayMood {
         DayMood(rawValue: day) ?? .acceptance
     }
-    
-    // MARK: - Случайный выбор текста
-    private func random(_ texts: [String]) -> String {
-        texts.randomElement() ?? ""
-    }
-    
+
     // MARK: - Старт игры
     func startGame() {
         started = true
@@ -28,48 +24,40 @@ final class GameViewModel: ObservableObject {
         stage = .sunrise
         logs = []
 
-        let mood = moodForDay(day)
-        let texts = AtmosphereTexts.texts[mood]?[stage] ?? []
-        addLog(random(texts))
+        addCurrentLog()
     }
-    
+
     // MARK: - Переход к следующему этапу
     func nextStep() {
         if let next = DayStage(rawValue: stage.rawValue + 1) {
             stage = next
-
-            let mood = moodForDay(day)
-            let texts = AtmosphereTexts.texts[mood]?[stage] ?? []
-            addLog(random(texts))
+            addCurrentLog()
         } else {
             nextDay()
         }
     }
-    
+
     // MARK: - Переход к следующему дню
     private func nextDay() {
         if day >= 7 {
-            finished = true
-            addLog()
+            finishGame()
         } else {
             day += 1
             stage = .sunrise
-            let mood = moodForDay(day)
-            let texts = AtmosphereTexts.texts[mood]?[stage] ?? []
-            addLog(random(texts))
+            addCurrentLog()
         }
     }
 
     // MARK: - Завершение игры
     private func finishGame() {
         finished = true
-        let mood = moodForDay(7)
-        let texts = AtmosphereTexts.texts[mood]?[.sunset] ?? []
-        addLog(random(texts))
+        day = 7
+        stage = .sunset
+        addCurrentLog()
     }
-    
-    // MARK: - Добавление лога
-    private func addLog() {
+
+    // MARK: - Добавление локализованного лога для текущего дня и этапа
+    private func addCurrentLog() {
         let text = AtmosphereTexts.log(day: day, stage: stage)
         logs.append(LogEntry(text: text))
     }
