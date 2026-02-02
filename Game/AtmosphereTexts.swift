@@ -1,3 +1,5 @@
+// все тексты и локализация
+
 struct AtmosphereTexts {
 
     static func log(day: Int, stage: DayStage) -> String {
