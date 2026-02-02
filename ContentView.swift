@@ -98,13 +98,25 @@ final class GameViewModel: ObservableObject {
 
 
     func nextStep() {
-        if let nextStage = DayStage(rawValue: stage.rawValue + 1) {
-            stage = nextStage
-            addLog("Наступил \(stage.title)")
-        } else {
-            nextDay()
+    if let nextStage = DayStage(rawValue: stage.rawValue + 1) {
+        stage = nextStage
+
+        switch stage {
+        case .sunrise:
+            addLog(random(Atmosphere.sunrise))
+        case .noon:
+            addLog(random(Atmosphere.noon))
+        case .evening:
+            addLog(random(Atmosphere.evening))
+        case .sunset:
+            addLog(random(Atmosphere.sunset))
         }
+
+    } else {
+        nextDay()
     }
+}
+
 
     private func nextDay() {
         if day >= 7 {
