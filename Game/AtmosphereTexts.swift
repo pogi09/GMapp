@@ -1,6 +1,12 @@
 // все тексты и локализация --- AtmosphereTexts — не файл «про UI» и не «про игру», это словарь атмосферы.
+import Foundation
+import SwiftUI
 
+/// Атмосферные тексты для каждого дня и этапа
+/// Используется в GameViewModel для логов
 struct AtmosphereTexts {
+
+    /// Основной словарь для MVP
     static let texts: [DayMood: [DayStage: [String]]] = [
         .hope: [
             .sunrise: ["Всё кажется возможным.", "Ты веришь, что путь приведёт к свету."],
@@ -45,12 +51,27 @@ struct AtmosphereTexts {
             .sunset: ["Путь был именно таким."]
         ]
     ]
+
+    /// Возвращает случайный текст для данного настроения и этапа дня
+    /// - Parameters:
+    ///   - mood: настроение дня
+    ///   - stage: этап дня
+    /// - Returns: случайный текст или пустую строку
+    static func random(mood: DayMood, stage: DayStage) -> String {
+        let textsForStage = texts[mood]?[stage] ?? []
+        return textsForStage.randomElement() ?? ""
+    }
+
+    /// Метод для будущей локализации EN/RU
+    /// Можно использовать вместо `texts` для подключения Localizable.strings
+    /// - Parameters:
+    ///   - day: номер дня (1–7)
+    ///   - stage: этап дня
+    /// - Returns: локализованный текст
+    static func log(day: Int, stage: DayStage) -> String {
+        let key = "log_day\(day)_\(stage.title)"
+        return NSLocalizedString(key, comment: "")
+    }
 }
 
-//struct AtmosphereTexts {
 
-//    static func log(day: Int, stage: DayStage) -> String {
-//        let key = "log_day\(day)_\(stage.title)"
-//        return NSLocalizedString(key, comment: "")
-//    }
-//}
