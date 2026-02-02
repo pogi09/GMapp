@@ -1,3 +1,4 @@
+// UI
 import SwiftUI
 
 // MARK: - Этапы дня
