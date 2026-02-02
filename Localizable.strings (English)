@@ -1,4 +1,23 @@
+/* Start screen */
 "start_path" = "Begin the path";
+
+/* Continue button */
 "continue_path" = "Continue";
+
+/* Finish screen */
 "path_finished" = "The path is complete";
+
+/* Restart button */
 "restart" = "Start again";
+
+/* Logs (atmospheric texts) */
+"log_day1_sunrise" = "Everything feels possible.";
+"log_day1_noon" = "You move forward easily.";
+"log_day1_evening" = "The day was kind.";
+"log_day1_sunset" = "You have no doubts.";
+
+"log_day7_sunrise" = "You accept the morning.";
+"log_day7_noon" = "Nothing needs to be changed.";
+"log_day7_evening" = "You let the day go.";
+"log_day7_sunset" = "The path was just as it should be.";
+
