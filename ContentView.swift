@@ -1,14 +1,7 @@
-// UI
-import SwiftUI
-
 // MARK: - Этапы дня перенес в  DayStage
- 
 // MARK: - Настроение дняперенес в DayMood
-
 // MARK: - Атмосферные тексты
-
 // MARK: - Лог перенес в Models/LogEntry.swift
-
 // MARK: - ViewModel перенес в GameViewModel.swift
     // MARK: - Определение настроения дня
     // MARK: - Случайный выбор текста
@@ -17,7 +10,7 @@ import SwiftUI
     // MARK: - Переход к следующему дню
     // MARK: - Завершение игры
     // MARK: - Добавление лога
-
+import SwiftUI
 
 // MARK: - UI
 struct ContentView: View {
@@ -37,10 +30,10 @@ struct ContentView: View {
         .animation(.easeInOut, value: vm.started)
     }
 
-    // MARK: Start screen
+    // MARK: - Start Screen
     private var startScreen: some View {
         VStack(spacing: 24) {
-            Text("ПУТЬ")
+            Text(LocalizedStringKey("game_title"))
                 .font(.largeTitle)
                 .fontWeight(.bold)
 
@@ -54,17 +47,18 @@ struct ContentView: View {
         }
     }
 
-    // MARK: Game screen
+    // MARK: - Game Screen
     private var gameScreen: some View {
         ZStack {
+            // Фон по текущему этапу
             vm.stage.backgroundColor
                 .ignoresSafeArea()
 
             VStack(spacing: 16) {
-                Text("День \(vm.day) / 7")
+                Text("\(LocalizedStringKey("day")) \(vm.day) / 7")
                     .font(.headline)
 
-                Text(vm.stage.title)
+                Text(vm.stage.title) // Можно локализовать в будущем
                     .font(.title2)
 
                 console
@@ -81,7 +75,7 @@ struct ContentView: View {
         }
     }
 
-    // MARK: Finish screen
+    // MARK: - Finish Screen
     private var finishScreen: some View {
         VStack(spacing: 24) {
             Text(LocalizedStringKey("path_finished"))
@@ -97,7 +91,7 @@ struct ContentView: View {
         }
     }
 
-    // MARK: Console logs
+    // MARK: - Console Logs
     private var console: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 6) {
@@ -122,4 +116,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
