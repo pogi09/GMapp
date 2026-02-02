@@ -119,14 +119,15 @@ final class GameViewModel: ObservableObject {
 
 
     private func nextDay() {
-        if day >= 7 {
-            finishGame()
-        } else {
-            day += 1
-            stage = .sunrise
-            addLog("Начался день \(day)")
-        }
+    if day >= 7 {
+        finishGame()
+    } else {
+        day += 1
+        stage = .sunrise
+        addLog(random(Atmosphere.newDay))
     }
+}
+
 
     private func finishGame() {
         finished = true
