@@ -4,60 +4,6 @@ import SwiftUI
 enum DayStage: Int, CaseIterable {
     case sunrise, noon, evening, sunset
 
-struct AtmosphereTexts {
-
-    static let texts: [DayMood: [DayStage: [String]]] = [
-
-        .hope: [
-            .sunrise: [
-                "Всё кажется возможным.",
-                "Ты веришь, что путь приведёт к свету."
-            ],
-            .noon: [
-                "Надежда придаёт сил.",
-                "Ты идёшь легко."
-            ],
-            .evening: [
-                "День был добр.",
-            ],
-            .sunset: [
-                "Ты не сомневаешься."
-            ]
-        ],
-
-        .doubt: [
-            .sunrise: [
-                "Мысли приходят раньше света."
-            ],
-            .noon: [
-                "Ты начинаешь задавать вопросы."
-            ],
-            .evening: [
-                "Не все ответы найдены."
-            ],
-            .sunset: [
-                "Сомнение остаётся."
-            ]
-        ],
-
-        .acceptance: [
-            .sunrise: [
-                "Ты принимаешь утро таким, какое оно есть."
-            ],
-            .noon: [
-                "Ничего не нужно менять."
-            ],
-            .evening: [
-                "Ты не борешься с усталостью."
-            ],
-            .sunset: [
-                "Путь был именно таким."
-            ]
-        ]
-    ]
-}
-
-
     var title: String {
         switch self {
         case .sunrise: return "Восход"
@@ -77,14 +23,57 @@ struct AtmosphereTexts {
     }
 }
 
+// MARK: - Настроение дня
 enum DayMood: Int {
-    case hope = 1
-    case curiosity
-    case doubt
-    case effort
-    case fatigue
-    case reflection
-    case acceptance
+    case hope = 1, curiosity, doubt, effort, fatigue, reflection, acceptance
+}
+
+// MARK: - Атмосферные тексты
+struct AtmosphereTexts {
+    static let texts: [DayMood: [DayStage: [String]]] = [
+        .hope: [
+            .sunrise: ["Всё кажется возможным.", "Ты веришь, что путь приведёт к свету."],
+            .noon: ["Надежда придаёт сил.", "Ты идёшь легко."],
+            .evening: ["День был добр."],
+            .sunset: ["Ты не сомневаешься."]
+        ],
+        .curiosity: [
+            .sunrise: ["Утро открывает новые вопросы."],
+            .noon: ["Ты ищешь ответы на пути."],
+            .evening: ["Всё кажется интересным."],
+            .sunset: ["Новый опыт накоплен."]
+        ],
+        .doubt: [
+            .sunrise: ["Мысли приходят раньше света."],
+            .noon: ["Ты начинаешь задавать вопросы."],
+            .evening: ["Не все ответы найдены."],
+            .sunset: ["Сомнение остаётся."]
+        ],
+        .effort: [
+            .sunrise: ["Ты собираешь силы для пути."],
+            .noon: ["Трудности не пугают."],
+            .evening: ["Ты продолжаешь идти."],
+            .sunset: ["День завершён, но путь продолжается."]
+        ],
+        .fatigue: [
+            .sunrise: ["Утро тяжёлое, но ты идёшь."],
+            .noon: ["Ноги устали, мысли яснее."],
+            .evening: ["Ты учишься принимать усталость."],
+            .sunset: ["Скоро отдых, скоро путь продолжится."]
+        ],
+        .reflection: [
+            .sunrise: ["Ты оглядываешься на пройденное."],
+            .noon: ["Мысли глубоки, сердце спокойно."],
+            .evening: ["Ты находишь смысл в каждом шаге."],
+            .sunset: ["Скоро финал, время оценить путь."]
+        ],
+        .acceptance: [
+            .sunrise: ["Ты принимаешь утро таким, какое оно есть."],
+            .noon: ["Ничего не нужно менять."],
+            .evening: ["Ты не борешься с усталостью."],
+            .sunset: ["Путь был именно таким."]
+        ]
+    ]
 }
 
 // MARK: - Лог
@@ -102,56 +91,64 @@ final class GameViewModel: ObservableObject {
     @Published var started = false
     @Published var finished = false
 
+    // MARK: - Определение настроения дня
     private func moodForDay(_ day: Int) -> DayMood {
         DayMood(rawValue: day) ?? .acceptance
     }
-    
+
+    // MARK: - Случайный выбор текста
     private func random(_ texts: [String]) -> String {
         texts.randomElement() ?? ""
     }
 
+    // MARK: - Старт игры
     func startGame() {
         started = true
         finished = false
         day = 1
         stage = .sunrise
         logs = []
-        addLog(random(Atmosphere.start))
-    }
-
-
-    func nextStep() {
-    if let nextStage = DayStage(rawValue: stage.rawValue + 1) {
-        stage = nextStage
 
         let mood = moodForDay(day)
         let texts = AtmosphereTexts.texts[mood]?[stage] ?? []
         addLog(random(texts))
-
-    } else {
-        nextDay()
     }
-}
 
+    // MARK: - Переход к следующему этапу
+    func nextStep() {
+        if let nextStage = DayStage(rawValue: stage.rawValue + 1) {
+            stage = nextStage
 
+            let mood = moodForDay(day)
+            let texts = AtmosphereTexts.texts[mood]?[stage] ?? []
+            addLog(random(texts))
+        } else {
+            nextDay()
+        }
+    }
 
+    // MARK: - Переход к следующему дню
     private func nextDay() {
-    if day >= 7 {
-        finishGame()
-    } else {
-        day += 1
-        stage = .sunrise
-        addLog(random(Atmosphere.newDay))
+        if day >= 7 {
+            finishGame()
+        } else {
+            day += 1
+            stage = .sunrise
+            let mood = moodForDay(day)
+            let texts = AtmosphereTexts.texts[mood]?[stage] ?? []
+            addLog(random(texts))
+        }
     }
-}
 
-
+    // MARK: - Завершение игры
     private func finishGame() {
-    finished = true
-    addLog(random(Atmosphere.finish))
-}
-    
+        finished = true
+        let mood = moodForDay(7)
+        let texts = AtmosphereTexts.texts[mood]?[.sunset] ?? []
+        addLog(random(texts))
+    }
 
+    // MARK: - Добавление лога
     private func addLog(_ text: String) {
         logs.append(LogEntry(text: text))
     }
@@ -175,14 +172,14 @@ struct ContentView: View {
         .animation(.easeInOut, value: vm.started)
     }
 
-    // MARK: Start
+    // MARK: Start screen
     private var startScreen: some View {
         VStack(spacing: 24) {
             Text("ПУТЬ")
                 .font(.largeTitle)
                 .fontWeight(.bold)
 
-            Button("Начать путь") {
+            Button(LocalizedStringKey("start_path")) {
                 vm.startGame()
             }
             .padding()
@@ -192,7 +189,7 @@ struct ContentView: View {
         }
     }
 
-    // MARK: Game
+    // MARK: Game screen
     private var gameScreen: some View {
         ZStack {
             vm.stage.backgroundColor
@@ -207,7 +204,7 @@ struct ContentView: View {
 
                 console
 
-                Button("Продолжить путь") {
+                Button(LocalizedStringKey("continue_path")) {
                     vm.nextStep()
                 }
                 .padding()
@@ -219,13 +216,13 @@ struct ContentView: View {
         }
     }
 
-    // MARK: Finish
+    // MARK: Finish screen
     private var finishScreen: some View {
         VStack(spacing: 24) {
-            Text("Путь завершён")
+            Text(LocalizedStringKey("path_finished"))
                 .font(.largeTitle)
 
-            Button("Начать заново") {
+            Button(LocalizedStringKey("restart")) {
                 vm.startGame()
             }
             .padding()
@@ -235,7 +232,7 @@ struct ContentView: View {
         }
     }
 
-    // MARK: Console
+    // MARK: Console logs
     private var console: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 6) {
@@ -253,3 +250,11 @@ struct ContentView: View {
         .frame(height: 200)
     }
 }
+
+// MARK: - Preview
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
