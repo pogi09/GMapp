@@ -7,7 +7,7 @@
 ## 📱 Preview
 
 <!-- Замени ссылку ниже на свой GIF после того как запишешь его -->
-![Gameplay](https://YOUR_GIF_LINK_HERE)
+![Gameplay](https://github.com/pogi09/GMapp/issues/1#issue-4120647848)
 
 ---
 
@@ -15,7 +15,7 @@
 
 <!-- Вставь свои скриншоты — загрузи их на imgur.com и вставь ссылки -->
 <p float="left">
-  <img src="https://YOUR_SCREENSHOT_1" width="200"/>
+  <img src="https://github.com/pogi09/GMapp/issues/3#issue-4120712486)" width="200"/>
   <img src="https://YOUR_SCREENSHOT_2" width="200"/>
   <img src="https://YOUR_SCREENSHOT_3" width="200"/>
 </p>
