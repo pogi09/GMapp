@@ -1,4 +1,6 @@
-https://github.com/pogi09/GMapp/issues/3#issue-4120712486
+<p align="center">
+  <img src="https://github.com/pogi09/GMapp/issues/3#issue-4120712486" width="80" alt="THE PATH logo"/>
+</p>
 # 🌅 THE PATH — GMapp
 
 > A 7-day atmospheric journey through moods, thoughts, and acceptance.
