@@ -1,0 +1,27 @@
+# Assets — не включать в репозиторий
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.heic
+*.webp
+
+# Xcode
+*.xcuserstate
+*.xcuserdatad/
+DerivedData/
+.build/
+*.moved-aside
+*.pbxuser
+*.perspectivev3
+xcuserdata/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# Swift Package Manager
+.swiftpm/
+Package.resolved
