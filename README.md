@@ -15,7 +15,7 @@
 
 <!-- Вставь свои скриншоты — загрузи их на imgur.com и вставь ссылки -->
 <p float="left">
-  <img src="https://github.com/pogi09/GMapp/issues/3#issue-4120712486)" width="200"/>
+  <img src="https://github.com/pogi09/GMapp/issues/3#issue-4120712486" width="200"/>
   <img src="https://YOUR_SCREENSHOT_2" width="200"/>
   <img src="https://YOUR_SCREENSHOT_3" width="200"/>
 </p>
