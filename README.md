@@ -7,7 +7,7 @@
 ## 📱 Preview
 
 <!-- Замени ссылку ниже на свой GIF после того как запишешь его -->
-![Gameplay](https://github.com/pogi09/GMapp/issues/1#issue-4120647848)
+![Gameplay] https://github.com/pogi09/GMapp/issues/1#issue-4120647848
 
 ---
 
