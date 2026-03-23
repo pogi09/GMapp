@@ -1,10 +1,8 @@
 <p align="center">
-  <img src="https://github.com/pogi09/GMapp/issues/3#issue-4120712486" width="80" alt="THE PATH logo"/>
+  <img src="https://github.com/user-attachments/assets/fc96df96-c74c-4980-a2f4-209856c044e4" width="120" alt="THE PATH logo"/>
 </p>
-# 🌅 THE PATH — GMapp
-
-> A 7-day atmospheric journey through moods, thoughts, and acceptance.
-
+<h1 align="center">THE PATH — GMapp</h1>
+<p align="center"><i>A 7-day atmospheric journey through moods, thoughts, and acceptance.</i></p>
 ---
 
 ## 📱 Preview
